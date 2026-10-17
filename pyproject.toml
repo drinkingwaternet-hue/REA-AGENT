@@ -1,0 +1,10 @@
+[project]
+name = "sigverify"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+  "pydantic>=2.0",
+  "cryptography>=41.0",
+  "requests>=2.31.0",
+  "pytest>=7.4.0",
+]
