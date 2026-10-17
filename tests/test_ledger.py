@@ -1,5 +1,11 @@
+import sys
+from pathlib import Path
+
+# เพิ่มโฟลเดอร์ src เข้าไปในเส้นทางค้นหาโมดูล
+sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+
 import pytest
-from src.sigverify.ledger import Ledger
+from sigverify.ledger import Ledger
 
 
 def test_ledger_starts_with_genesis():
@@ -25,5 +31,6 @@ def test_verify_valid():
 def test_verify_tampered():
     ledger = Ledger()
     ledger.add({"x": 1})
-    ledger.chain[1].data["x"] = 999  # แก้ไขข้อมูลย้อนหลัง
+    # จำลองการแก้ไขข้อมูลย้อนหลัง
+    ledger.chain[1].data["x"] = 999
     assert ledger.verify() is False
